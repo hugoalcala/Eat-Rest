@@ -8,9 +8,9 @@ function Header(){
                 <h1 className="titulo">EAT & REST</h1>
             </div>
             <nav className="barra_navegación">
-                <a href="restaurantes">restaurantes</a>
-                <a href="alojamiento">alojamiento</a>
-                <a href="reservas">reservas</a>
+                <a href="restaurantes">RESTAURANTE</a>
+                <a href="alojamiento">ALOJAMIENTO</a>
+                <a href="reservas">RESERVAS</a>
             </nav>
         </header>
     );
