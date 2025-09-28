@@ -11,6 +11,7 @@ function App() {
         <main style={{ padding: "100px 20px 20px" }}>
           <h2>Bienvenido a Eat & Rest</h2>
           <p>Encuentra los mejores restaurantes y alojamientos en Murcia y Zaragoza.</p>
+   
       </main>
       <Footer />
     </>
