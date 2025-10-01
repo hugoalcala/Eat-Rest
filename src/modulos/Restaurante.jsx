@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./api";
-import "./Restaurantes.css";
+import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./api.js";
+import "./Restaurante.css";
 
 function Restaurantes() {
   const [restaurantes, setRestaurantes] = useState([]);
