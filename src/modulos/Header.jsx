@@ -8,9 +8,9 @@ function Header(){
                 <h1 className="titulo">EAT & REST</h1>
             </div>
             <nav className="barra_navegación">
-                <a href="restaurantes">RESTAURANTE</a>
-                <a href="alojamiento">ALOJAMIENTO</a>
-                <a href="reservas">RESERVAS</a>
+                <button onClick={() =>setPagina("home")}>Inicio</button>
+                <button onClick={() =>setPagina("restaurantes")}>Restaurantes</button>
+                <button onClick={() =>setPagina("alojamientos")}>Alojamientos</button>
             </nav>
         </header>
     );

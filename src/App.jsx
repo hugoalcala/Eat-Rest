@@ -3,19 +3,19 @@ import './App.css'
 import Header from './modulos/Header'
 import Footer from './modulos/Footer'
 function App() {
-  const [count, setCount] = useState(0)
+  const [pagina, setPagina] = useState("home");
 
   return (
-    <>
-        <Header />
-        <main style={{ padding: "100px 20px 20px" }}>
-          <h2>Bienvenido a Eat & Rest</h2>
-          <p>Encuentra los mejores restaurantes y alojamientos en Murcia y Zaragoza.</p>
-   
+    <div className="app">
+      <Header setPagina={setPagina} />
+      <main>
+        {pagina === "home" && <h1>Bienvenido a Eat & Rest</h1>}
+        {pagina === "restaurantes" && <Restaurantes />}
+        {pagina === "alojamientos" && <p>Aquí irán los alojamientos...</p>}
       </main>
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
