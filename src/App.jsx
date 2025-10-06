@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import Header from './modulos/Header'
-import Footer from './modulos/Footer'
-import Restaurantes from './modulos/Restaurante';
+import Header from './modulos/Header.jsx'
+import Footer from './modulos/Footer.jsx'
+import Restaurantes from './modulos/Restaurante.jsx';
+import Alojamientos from './modulos/Alojamientos.jsx';
 function App() {
   const [pagina, setPagina] = useState("home");
 
@@ -13,6 +14,7 @@ function App() {
       <main>
         {pagina === "home" && <h1>Bienvenido a Eat & Rest</h1>}
         {pagina === "restaurante" && <Restaurante />}
+        {pagina === "alojamientos" && <Alojamientos />}
       </main>
       <Footer />
     </div>

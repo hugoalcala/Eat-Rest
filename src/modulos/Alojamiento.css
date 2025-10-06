@@ -1,0 +1,16 @@
+.alojamientos-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.alojamientos-section h2 {
+  color: #8a2be2;
+  margin-bottom: 20px;
+}
+
+.alojamientos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}

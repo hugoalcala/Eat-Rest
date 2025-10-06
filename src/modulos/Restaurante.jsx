@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./api.js";
+import RestauranteCard from "./RestauranteCard";
 import "./Restaurante.css";
 
 function Restaurantes() {
@@ -15,7 +16,6 @@ function Restaurantes() {
           getRestaurantesMurcia(),
         ]);
 
-        // Juntamos todos los restaurantes
         setRestaurantes([...zaragoza, ...murcia]);
       } catch (err) {
         console.error("Error:", err);
@@ -32,20 +32,15 @@ function Restaurantes() {
   if (error) return <p>{error}</p>;
 
   return (
-    <section>
+    <section className="restaurantes">
       <h2>Restaurantes</h2>
+
       {restaurantes.length === 0 ? (
         <p>No hay restaurantes disponibles.</p>
       ) : (
         <div className="grid">
-          {restaurantes.map((r) => (
-            <div key={r.id} className="card">
-              <h3>{r.nombre}</h3>
-              <p>{r.tipococina}</p>
-              {r.lat && r.lng && (
-                <p>Ubicación: {r.lat.toFixed(3)}, {r.lng.toFixed(3)}</p>
-              )}
-            </div>
+          {restaurantes.map((r, index) => (
+            <RestauranteCard key={r.id || index} restaurante={r} />
           ))}
         </div>
       )}
