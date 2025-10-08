@@ -12,7 +12,7 @@ function Header({ setPagina }) {
       <nav className="barra_navegacion">
         <button onClick={() => setPagina("home")}>Inicio</button>
         <button onClick={() => setPagina("restaurante")}>Restaurantes</button>
-        <button onClick={() => setPagina("alojamientos")}>Alojamientos</button>
+        <button onClick={() => setPagina("alojamiento")}>Alojamientos</button>
       </nav>
     </header>
   );

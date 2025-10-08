@@ -9,34 +9,35 @@ function Alojamientos() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function cargar() {
+    async function cargarAlojamientos() {
       try {
         const [zaragoza, murcia] = await Promise.all([
           getAlojamientosZaragoza(),
           getAlojamientosMurcia(),
         ]);
+
         setAlojamientos([...zaragoza, ...murcia]);
       } catch (err) {
-        console.error("Error:", err);
+        console.error("Error cargando alojamientos:", err);
         setError("No se pudieron cargar los alojamientos");
       } finally {
         setCargando(false);
       }
     }
 
-    cargar();
+    cargarAlojamientos();
   }, []);
 
-  if (cargando) return <p>Cargando alojamientos...</p>;
+  if (cargando) return <p>Cargando alojamientos...</p>; 
   if (error) return <p>{error}</p>;
 
   return (
-    <section className="alojamientos-section">
+    <section className="alojamientos">
       <h2>Alojamientos</h2>
       {alojamientos.length === 0 ? (
         <p>No hay alojamientos disponibles.</p>
       ) : (
-        <div className="alojamientos-grid">
+        <div className="grid">
           {alojamientos.map((a, index) => (
             <AlojamientoCard key={a.id || index} alojamiento={a} />
           ))}

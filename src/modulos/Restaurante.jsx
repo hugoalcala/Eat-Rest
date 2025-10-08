@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./api.js";
+import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./apiRestaurantes.js";
 import RestauranteCard from "./RestauranteCard";
 import "./Restaurante.css";
 
@@ -34,7 +34,6 @@ function Restaurantes() {
   return (
     <section className="restaurantes">
       <h2>Restaurantes</h2>
-
       {restaurantes.length === 0 ? (
         <p>No hay restaurantes disponibles.</p>
       ) : (

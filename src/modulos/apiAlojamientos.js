@@ -1,32 +1,43 @@
-//Para pedir los alojamientos de zaragoza
+// apiAlojamientos.js
+
+// Zaragoza alojamientos
 export async function getAlojamientosZaragoza() {
-  const res = await fetch(
-    "https://www.zaragoza.es/sede/servicio/alojamiento.json?rows=200"
-  );
+  const url = "https://www.zaragoza.es/sede/servicio/alojamiento.geojson?srsname=wgs84&rows=100";
+  const res = await fetch(url);
   const data = await res.json();
 
-  // Algunos endpoints devuelven los alojamientos en data.result
-  const alojamientos = data.result || [];
+  const items = data.features || data.result || [];
 
-  return alojamientos.map((a, i) => ({
-    id: a.id || i,
-    nombre: a.title || "Sin nombre",
-    descripcion: a.description || "",
-    direccion: a.streetAddress || "",
-    telefono: a.telefonos || "",
-    categoria: a.categoria || "Desconocido",
-    camas: a.camas || null,
-    habitaciones: a.habitaciones || null,
-    localidad: a.addressLocality || "",
-    link: a.link || "",
-    lat: a.lat || null,  // No siempre está disponible
-    lng: a.lng || null,  // Pero lo dejamos por consistencia
-  }));
+  return items.map((feat, idx) => {
+    const props = feat.properties || feat;
+    return {
+      id: props.id || idx,
+      nombre: props.title || props.Nombre || "Sin nombre",
+      descripcion: props.description || "Sin descripción",
+      direccion: props.streetAddress || props.Direccion || "Dirección no disponible",
+      localidad: props.addressLocality || "Zaragoza",
+      categoria: props.categoria || "No especificada",
+      lat: feat.geometry?.coordinates?.[1],
+      lng: feat.geometry?.coordinates?.[0],
+      link: props.uri || props.link || null,
+    };
+  });
 }
 
-
-//Para pedir los alojamientos de murcia
+// Murcia alojamientos
 export async function getAlojamientosMurcia() {
-    const res = await fetch("https://nexo.carm.es/nexo/archivos/recursos/opendata/json/Hoteles.json");
-    const data = await res.json();
+  const url = "https://nexo.carm.es/nexo/archivos/recursos/opendata/json/Alojamientos.json";
+  const res = await fetch(url);
+  const data = await res.json();
+
+  return data.map((item, idx) => ({
+    id: item.Id || idx,
+    nombre: item.Nombre || "Sin nombre",
+    descripcion: item.Descripcion || "Sin descripción",
+    direccion: item.Direccion || "Dirección no disponible",
+    localidad: "Murcia",
+    categoria: item.TipoAlojamiento || "No especificada",
+    lat: item.Latitud || null,
+    lng: item.Longitud || null,
+  }));
 }

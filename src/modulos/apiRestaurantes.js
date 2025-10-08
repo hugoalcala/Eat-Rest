@@ -1,4 +1,4 @@
-// Zaragoza
+// Zaragoza restaurantes
 export async function getRestaurantesZaragoza() {
   const res = await fetch("https://www.zaragoza.es/sede/servicio/restaurante.geojson?srsname=wgs84");
   const data = await res.json();
@@ -18,7 +18,7 @@ export async function getRestaurantesZaragoza() {
   });
 }
 
-// Murcia
+// Murcia restaurantes
 export async function getRestaurantesMurcia() {
   const res = await fetch("https://nexo.carm.es/nexo/archivos/recursos/opendata/json/Restaurantes.json");
   const data = await res.json();
