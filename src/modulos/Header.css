@@ -1,3 +1,9 @@
+.nav-activo {
+  background: #ff7e5f !important;
+  color: #fff !important;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
 
 .header {
   width: 100%;
@@ -23,14 +29,19 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
+  padding: 0 0 0 8px;
 }
 
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 4px;
 }
 
 

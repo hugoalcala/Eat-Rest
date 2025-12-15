@@ -1,20 +1,31 @@
 import React from "react";
 import "./AlojamientoCard.css";
 
+
+
 function AlojamientoCard({ alojamiento }) {
   if (!alojamiento) return null;
 
-  const { title, streetAddress, postalCode, addressLocality, telefonos, categoria, link } = alojamiento;
+  const {
+    nombre,
+    descripcion,
+    direccion,
+    localidad,
+    categoria,
+    link
+  } = alojamiento;
 
   return (
-    <div className="card">
-      <h3>{title || "Alojamiento sin nombre"}</h3>
-      <p>{categoria || "Categoría desconocida"}</p>
-      <p>{streetAddress && `${streetAddress}, ${postalCode || ""}`}</p>
-      <p>{addressLocality}</p>
-      {telefonos && <p> {telefonos}</p>}
+    <div className="alojamiento-card">
+      <h3>{nombre || "Alojamiento sin nombre"}</h3>
+      {categoria && <p className="alojamiento-categoria">{categoria}</p>}
+      {direccion && <p className="alojamiento-direccion">{direccion}</p>}
+      {localidad && <p className="alojamiento-localidad">{localidad}</p>}
+      {descripcion && (
+        <p className="descripcion" style={{wordBreak: 'break-word'}} dangerouslySetInnerHTML={{ __html: descripcion }} />
+      )}
       {link && (
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <a className="ver-mas" href={link} target="_blank" rel="noopener noreferrer">
           Ver más detalles
         </a>
       )}

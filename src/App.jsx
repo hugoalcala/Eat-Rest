@@ -5,12 +5,13 @@ import Footer from "./modulos/Footer";
 import Restaurantes from "./modulos/Restaurante";
 import Alojamientos from "./modulos/Alojamientos";
 
+
 function App() {
-  const [pagina, setPagina] = useState("home");
+  const [pagina, setPagina] = useState("restaurante");
 
   return (
     <div className="app">
-      <Header setPagina={setPagina} />
+      <Header setPagina={setPagina} paginaActual={pagina} />
 
       <main>
         {pagina === "home" && <h1>Bienvenido a Eat & Rest</h1>}

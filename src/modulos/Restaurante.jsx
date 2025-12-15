@@ -27,7 +27,7 @@ function Restaurantes() {
           getRestaurantesZaragoza(),
           getRestaurantesMurcia(),
         ]);
-        // Añadir ciudad
+        // Añadir ciudad solo a restaurantes
         const zaragozaConCiudad = zaragoza.map((r) => ({
           ...r,
           ciudad: "Zaragoza",
@@ -47,9 +47,11 @@ function Restaurantes() {
   }, []);
 
 
-  const restaurantesFiltrados = restaurantes.filter(r =>
-    r.nombre.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  const restaurantesFiltrados = restaurantes
+    .filter(r =>
+      !r.nombre.toLowerCase().includes("hotel") &&
+      r.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
   // Paginación
   const totalPaginas = Math.ceil(restaurantesFiltrados.length / porPagina);
