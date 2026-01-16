@@ -60,12 +60,18 @@ function DetalleAlojamiento() {
         <div className="detalle-info">
           <div className="info-grupo">
             <label>Categoría:</label>
-            <p>{alojamiento.categoria || "No especificada"}</p>
+            <p>{alojamiento.categoria || "No especificada"} - {alojamiento.nombre}</p>
           </div>
           <div className="info-grupo">
             <label>Ciudad:</label>
             <p>{alojamiento.localidad}</p>
           </div>
+          {alojamiento.numEstrellas && (
+            <div className="info-grupo">
+              <label>Estrella:</label>
+              <p>{alojamiento.numEstrellas}</p>
+            </div>
+          )}
           {alojamiento.direccion && (
             <div className="info-grupo">
               <label>Dirección:</label>
@@ -76,6 +82,30 @@ function DetalleAlojamiento() {
             <div className="info-grupo">
               <label>Descripción:</label>
               <p dangerouslySetInnerHTML={{ __html: alojamiento.descripcion }} />
+            </div>
+          )}
+          {alojamiento.telefono && (
+            <div className="info-grupo">
+              <label>Teléfono:</label>
+              <p>{alojamiento.telefono}</p>
+            </div>
+          )}
+          {alojamiento.email && (
+            <div className="info-grupo">
+              <label>Email:</label>
+              <p>{alojamiento.email}</p>
+            </div>
+          )}
+          {alojamiento.web && (
+            <div className="info-grupo">
+              <label>Web:</label>
+              <p>{alojamiento.web}</p>
+            </div>
+          )}
+          {alojamiento.horario && (
+            <div className="info-grupo">
+              <label>Horario:</label>
+              <p dangerouslySetInnerHTML={{ __html: alojamiento.horario }} />
             </div>
           )}
           {alojamiento.lat && alojamiento.lng && (

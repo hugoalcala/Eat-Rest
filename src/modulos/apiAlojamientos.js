@@ -17,6 +17,11 @@ export async function getAlojamientosZaragoza() {
     lat: item.latitud || item.Latitud || null,
     lng: item.longitud || item.Longitud || null,
     link: item.uri || item.link || null,
+    telefono: item.telephone || item.Telefono || null,
+    email: item.email || item.Email || null,
+    web: item.url || item.Web || null,
+    horario: item.horario || item.Horario || null,
+    numEstrellas: item.numEstrellas || item.NumEstrellas || null,
   }));
 }
 
@@ -34,5 +39,10 @@ export async function getAlojamientosMurcia() {
     categoria: item.TipoAlojamiento || item.Categoria || "No especificada",
     lat: item.Latitud || null,
     lng: item.Longitud || null,
+    telefono: item.Telefono || null,
+    email: item.Email || null,
+    web: item.Web || null,
+    horario: item.Horario || null,
+    numEstrellas: item.NumEstrellas || null,
   }));
 }
