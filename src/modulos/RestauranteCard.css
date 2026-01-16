@@ -12,6 +12,15 @@
   justify-content: space-between;
   min-height: 200px;
   position: relative;
+  cursor: pointer;
+}
+
+.card.murcia {
+  border-color: #9c27b0;
+}
+
+.card.zaragoza {
+  border-color: #ffa500;
 }
 
 .card:hover {
@@ -24,6 +33,10 @@
   color: #ff6b35;
   margin: 0 0 8px 0;
   font-weight: bold;
+}
+
+.card.murcia h3 {
+  color: #9c27b0;
 }
 
 .card .subtitulo {
@@ -44,6 +57,14 @@
   transition: background-color 0.2s;
   align-self: flex-end;
   margin-top: 12px;
+}
+
+.card.murcia .localidad-btn {
+  background-color: #9c27b0;
+}
+
+.card.zaragoza .localidad-btn {
+  background-color: #ffa500;
 }
 
 .localidad-btn:hover {

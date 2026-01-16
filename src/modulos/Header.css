@@ -58,7 +58,7 @@
   gap: 18px;
 }
 
-.barra_navegacion button {
+.barra_navegacion .nav-link {
   background: #222;
   color: #fff;
   border: none;
@@ -69,20 +69,20 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   outline: none;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.barra_navegacion button:hover {
+.barra_navegacion .nav-link:hover {
   background: #ff7e5f;
   color: #fff;
 }
 
-.barra_navegación a {
-  text-decoration: none;
-  color: #f0f0f0;
-  font-weight: 500;
-  transition: color 0.3s ease;
+.logo-container {
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
-.barra_navegación a:hover {
-  color: white;
+.logo-container:hover {
+  opacity: 0.8;
 }

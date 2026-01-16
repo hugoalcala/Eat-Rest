@@ -1,29 +1,26 @@
 
 
+import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../assets/Logo/logoEatRest.png";
 
-function Header({ setPagina, paginaActual }) {
+function Header() {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="logo-container">
-          <img src={logo} alt="Eat&Rest logo" className="logo" />
-          <h1 className="titulo">EAT & REST</h1>
-        </div>
+        <Link to="/restaurantes" style={{ textDecoration: "none" }}>
+          <div className="logo-container">
+            <img src={logo} alt="Eat&Rest logo" className="logo" />
+            <h1 className="titulo">EAT & REST</h1>
+          </div>
+        </Link>
         <nav className="barra_navegacion">
-          <button
-            className={paginaActual === "restaurante" ? "nav-activo" : ""}
-            onClick={() => setPagina("restaurante")}
-          >
+          <Link to="/restaurantes" className="nav-link">
             Restaurantes
-          </button>
-          <button
-            className={paginaActual === "alojamiento" ? "nav-activo" : ""}
-            onClick={() => setPagina("alojamiento")}
-          >
+          </Link>
+          <Link to="/alojamientos" className="nav-link">
             Alojamientos
-          </button>
+          </Link>
         </nav>
       </div>
     </header>

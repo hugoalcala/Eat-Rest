@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./apiRestaurantes";
+import RestauranteCard from "./RestauranteCard";
 import "./Restaurante.css";
 
 
@@ -121,13 +122,7 @@ function Restaurantes() {
               <p>No se encontraron restaurantes.</p>
             ) : (
               paginaRestaurantes.map((r) => (
-                <div className={`restaurante-card card-${r.ciudad.toLowerCase()}`} key={r.id}>
-                  <div className="restaurante-info">
-                    <h3>{r.nombre}</h3>
-                    <p className="restaurante-tipo">{r.tipococina}</p>
-                    <span className={`restaurante-ciudad ciudad-${r.ciudad.toLowerCase()}`}>{r.ciudad}</span>
-                  </div>
-                </div>
+                <RestauranteCard key={r.id} restaurante={r} />
               ))
             )}
           </div>

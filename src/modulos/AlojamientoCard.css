@@ -13,6 +13,7 @@
   justify-content: space-between;
   min-height: 200px;
   position: relative;
+  cursor: pointer;
 }
 
 .card.murcia {
