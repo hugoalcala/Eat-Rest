@@ -50,6 +50,7 @@
   font-weight: bold;
   margin: 0;
   letter-spacing: 1px;
+  color: #ffffff;
 }
 
 
@@ -79,10 +80,9 @@
 }
 
 .logo-container {
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.logo-container:hover {
-  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 0 0 8px;
+  text-decoration: none;
 }
