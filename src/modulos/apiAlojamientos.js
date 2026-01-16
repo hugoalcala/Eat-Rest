@@ -13,7 +13,7 @@ export async function getAlojamientosZaragoza() {
     descripcion: item.description || "Sin descripción",
     direccion: item.streetAddress || item.Direccion || "Dirección no disponible",
     localidad: item.addressLocality || "Zaragoza",
-    categoria: item.categoria || item.TipoAlojamiento || "No especificada",
+    categoria: (item.categoria || item.TipoAlojamiento || "No especificada").replace(/^categoria/i, "").trim(),
     lat: item.latitud || item.Latitud || null,
     lng: item.longitud || item.Longitud || null,
     link: item.uri || item.link || null,
