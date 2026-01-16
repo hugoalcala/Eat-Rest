@@ -13,6 +13,7 @@ function Restaurantes() {
 
   const [restaurantes, setRestaurantes] = useState([]);
   const [busqueda, setBusqueda] = useState("");
+  const [ciudadFiltro, setCiudadFiltro] = useState("todas");
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
   const [pagina, setPagina] = useState(1);
@@ -47,11 +48,12 @@ function Restaurantes() {
   }, []);
 
 
-  const restaurantesFiltrados = restaurantes
-    .filter(r =>
-      !r.nombre.toLowerCase().includes("hotel") &&
-      r.nombre.toLowerCase().includes(busqueda.toLowerCase())
-    );
+  const restaurantesFiltrados = restaurantes.filter(r => {
+    const coincideNombre = !r.nombre.toLowerCase().includes("hotel") &&
+      r.nombre.toLowerCase().includes(busqueda.toLowerCase());
+    const coincideCiudad = ciudadFiltro === "todas" || r.ciudad === ciudadFiltro;
+    return coincideNombre && coincideCiudad;
+  });
 
   // Paginación
   const totalPaginas = Math.ceil(restaurantesFiltrados.length / porPagina);
@@ -79,6 +81,35 @@ function Restaurantes() {
           onChange={e => setBusqueda(e.target.value)}
         />
       </header>
+      <div className="restaurantes-filtro-ciudades">
+        <button 
+          className={`filtro-btn todas ${ciudadFiltro === "todas" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("todas");
+            setPagina(1);
+          }}
+        >
+          Todas
+        </button>
+        <button 
+          className={`filtro-btn zaragoza ${ciudadFiltro === "Zaragoza" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("Zaragoza");
+            setPagina(1);
+          }}
+        >
+          Zaragoza
+        </button>
+        <button 
+          className={`filtro-btn murcia ${ciudadFiltro === "Murcia" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("Murcia");
+            setPagina(1);
+          }}
+        >
+          Murcia
+        </button>
+      </div>
       {cargando ? (
         <p>Cargando restaurantes...</p>
       ) : error ? (

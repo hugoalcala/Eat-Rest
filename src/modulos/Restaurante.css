@@ -41,6 +41,58 @@
   border: 1.5px solid #ff7e5f;
 }
 
+.restaurantes-filtro-ciudades {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn {
+  background-color: #ffffff;
+  color: #ff7e5f;
+  border: 2px solid #ff7e5f;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn.activo {
+  background-color: #ff7e5f;
+  color: #ffffff;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn.zaragoza {
+  color: #ffa500;
+  border-color: #ffa500;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn.zaragoza.activo {
+  background-color: #ffa500;
+  color: #ffffff;
+  border-color: #ffa500;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn.murcia {
+  color: #9c27b0;
+  border-color: #9c27b0;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn.murcia.activo {
+  background-color: #9c27b0;
+  color: #ffffff;
+  border-color: #9c27b0;
+}
+
+.restaurantes-filtro-ciudades .filtro-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255, 126, 95, 0.3);
+}
+
 .card-zaragoza {
   border: 2px solid #ffb347;
 }

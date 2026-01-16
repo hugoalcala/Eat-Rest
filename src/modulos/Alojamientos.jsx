@@ -54,7 +54,7 @@ function Alojamientos() {
       </div>
       <div className="alojamientos-filtro-ciudades">
         <button 
-          className={`filtro-btn ${ciudadFiltro === "todas" ? "activo" : ""}`}
+          className={`filtro-btn todas ${ciudadFiltro === "todas" ? "activo" : ""}`}
           onClick={() => {
             setCiudadFiltro("todas");
             setPagina(1);
@@ -63,7 +63,7 @@ function Alojamientos() {
           Todas
         </button>
         <button 
-          className={`filtro-btn ${ciudadFiltro === "Zaragoza" ? "activo" : ""}`}
+          className={`filtro-btn zaragoza ${ciudadFiltro === "Zaragoza" ? "activo" : ""}`}
           onClick={() => {
             setCiudadFiltro("Zaragoza");
             setPagina(1);
@@ -72,7 +72,7 @@ function Alojamientos() {
           Zaragoza
         </button>
         <button 
-          className={`filtro-btn ${ciudadFiltro === "Murcia" ? "activo" : ""}`}
+          className={`filtro-btn murcia ${ciudadFiltro === "Murcia" ? "activo" : ""}`}
           onClick={() => {
             setCiudadFiltro("Murcia");
             setPagina(1);
