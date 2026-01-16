@@ -93,10 +93,10 @@ function DetalleRestaurante() {
             </div>
           )}
         </div>
-        <Link to="/restaurantes" className="volver-btn">
-          ← Volver
-        </Link>
       </div>
+      <Link to="/restaurantes" className="volver-btn">
+        ← Volver
+      </Link>
     </div>
   );
 }

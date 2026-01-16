@@ -92,10 +92,10 @@ function DetalleAlojamiento() {
             Ver más información
           </a>
         )}
-        <Link to="/alojamientos" className="volver-btn">
-          ← Volver
-        </Link>
       </div>
+      <Link to="/alojamientos" className="volver-btn">
+        ← Volver
+      </Link>
     </div>
   );
 }
