@@ -5,6 +5,36 @@
   margin-bottom: 0;
 }
 
+.alojamientos-filtro-ciudades {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.filtro-btn {
+  background-color: #ffffff;
+  color: #8a2be2;
+  border: 2px solid #8a2be2;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filtro-btn.activo {
+  background-color: #8a2be2;
+  color: #ffffff;
+}
+
+.filtro-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3);
+}
+
 .alojamientos-section {
   padding: 24px 0 32px 0;
   background: #f7f7fa;

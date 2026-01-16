@@ -7,6 +7,7 @@ import "./Alojamiento.css";
 function Alojamientos() {
   const [alojamientos, setAlojamientos] = useState([]);
   const [busqueda, setBusqueda] = useState("");
+  const [ciudadFiltro, setCiudadFiltro] = useState("todas");
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
   const [pagina, setPagina] = useState(1);
@@ -29,9 +30,11 @@ function Alojamientos() {
     cargarAlojamientos();
   }, []);
 
-  const alojamientosFiltrados = alojamientos.filter(a =>
-    a.nombre?.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  const alojamientosFiltrados = alojamientos.filter(a => {
+    const coincideNombre = a.nombre?.toLowerCase().includes(busqueda.toLowerCase());
+    const coincideCiudad = ciudadFiltro === "todas" || a.localidad === ciudadFiltro;
+    return coincideNombre && coincideCiudad;
+  });
   const totalPaginas = Math.ceil(alojamientosFiltrados.length / porPagina);
   const inicio = (pagina - 1) * porPagina;
   const fin = inicio + porPagina;
@@ -48,6 +51,35 @@ function Alojamientos() {
           value={busqueda}
           onChange={e => setBusqueda(e.target.value)}
         />
+      </div>
+      <div className="alojamientos-filtro-ciudades">
+        <button 
+          className={`filtro-btn ${ciudadFiltro === "todas" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("todas");
+            setPagina(1);
+          }}
+        >
+          Todas
+        </button>
+        <button 
+          className={`filtro-btn ${ciudadFiltro === "Zaragoza" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("Zaragoza");
+            setPagina(1);
+          }}
+        >
+          Zaragoza
+        </button>
+        <button 
+          className={`filtro-btn ${ciudadFiltro === "Murcia" ? "activo" : ""}`}
+          onClick={() => {
+            setCiudadFiltro("Murcia");
+            setPagina(1);
+          }}
+        >
+          Murcia
+        </button>
       </div>
       {cargando ? (
         <p>Cargando alojamientos...</p>
