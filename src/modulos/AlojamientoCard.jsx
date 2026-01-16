@@ -16,18 +16,13 @@ function AlojamientoCard({ alojamiento }) {
   } = alojamiento;
 
   return (
-    <div className="alojamiento-card">
+    <div className={`card ${localidad === "Murcia" ? "murcia" : "zaragoza"}`}>
       <h3>{nombre || "Alojamiento sin nombre"}</h3>
-      {categoria && <p className="alojamiento-categoria">{categoria}</p>}
-      {direccion && <p className="alojamiento-direccion">{direccion}</p>}
-      {localidad && <p className="alojamiento-localidad">{localidad}</p>}
+      <p>{categoria ? categoria : "Categoría no especificada"}</p>
+      {direccion && <p>{direccion}</p>}
+      {localidad && <p>{localidad}</p>}
       {descripcion && (
         <p className="descripcion" style={{wordBreak: 'break-word'}} dangerouslySetInnerHTML={{ __html: descripcion }} />
-      )}
-      {link && (
-        <a className="ver-mas" href={link} target="_blank" rel="noopener noreferrer">
-          Ver más detalles
-        </a>
       )}
     </div>
   );

@@ -71,9 +71,6 @@ function Restaurantes() {
           </span>
           <h2 className="restaurantes-title">Restaurantes</h2>
         </div>
-        <p className="restaurantes-subtitle">
-          Descubre los mejores lugares para comer. ¡Explora y encuentra tu próximo favorito!
-        </p>
         <input
           className="restaurantes-buscador"
           type="text"

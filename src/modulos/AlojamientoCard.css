@@ -1,49 +1,43 @@
-.alojamiento-card {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 16px;
+.card {
+  background-color: #ffffff;
+  color: #333;
+  border: 3px solid #ffa500;
+  border-radius: 15px;
+  padding: 20px;
   width: 280px;
-  text-align: left;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.alojamiento-card:hover {
+.card.murcia {
+  border-color: #9c27b0;
+}
+
+.card.zaragoza {
+  border-color: #ffa500;
+}
+
+.card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.alojamiento-card h3 {
+.card h3 {
   font-size: 18px;
   color: #333;
   margin-bottom: 8px;
+  font-weight: bold;
 }
 
-.alojamiento-card p {
+.card p {
   margin: 5px 0;
-  color: #555;
-  font-size: 14px;
-}
-
-.alojamiento-card .descripcion {
-  font-style: italic;
   color: #666;
-  margin-top: 8px;
-}
-
-.alojamiento-card .ver-mas {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 12px;
-  background-color: #8a2be2;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
   font-size: 14px;
-  transition: background-color 0.2s;
 }
 
-.alojamiento-card .ver-mas:hover {
-  background-color: #7326c9;
+.card .descripcion {
+  font-style: italic;
+  color: #888;
+  margin-top: 8px;
 }
