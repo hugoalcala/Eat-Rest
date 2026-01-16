@@ -29,13 +29,15 @@ function Restaurantes() {
           getRestaurantesZaragoza(),
           getRestaurantesMurcia(),
         ]);
-        // Añadir ciudad solo a restaurantes
+        // Añadir ciudad e ID único a restaurantes
         const zaragozaConCiudad = zaragoza.map((r) => ({
           ...r,
+          id: `zaragoza-${r.id}`,
           ciudad: "Zaragoza",
         }));
         const murciaConCiudad = murcia.map((r) => ({
           ...r,
+          id: `murcia-${r.id}`,
           ciudad: "Murcia",
         }));
         setRestaurantes([...zaragozaConCiudad, ...murciaConCiudad]);

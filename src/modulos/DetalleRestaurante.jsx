@@ -67,9 +67,6 @@ function DetalleRestaurante() {
 
   return (
     <div className="detalle-container">
-      <Link to="/restaurantes" className="volver-btn">
-        ← Volver
-      </Link>
       <div className="detalle-card">
         <h1>{restaurante.nombre}</h1>
         <div className="detalle-info">
@@ -96,6 +93,9 @@ function DetalleRestaurante() {
             </div>
           )}
         </div>
+        <Link to="/restaurantes" className="volver-btn">
+          ← Volver
+        </Link>
       </div>
     </div>
   );

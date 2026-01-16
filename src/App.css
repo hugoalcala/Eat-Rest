@@ -5,11 +5,11 @@
   padding: 0;
   text-align: center;
   box-sizing: border-box;
-  background: linear-gradient(90deg, #8a2be2 60%, #ff7e5f 100%);
+  background: #ffffff;
 }
 
 body {
-  background: linear-gradient(90deg, #8a2be2 60%, #ff7e5f 100%);
+  background: #ffffff;
   margin: 0;
   padding: 0;
 }

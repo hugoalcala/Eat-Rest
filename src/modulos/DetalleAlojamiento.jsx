@@ -55,9 +55,6 @@ function DetalleAlojamiento() {
 
   return (
     <div className="detalle-container">
-      <Link to="/alojamientos" className="volver-btn">
-        ← Volver
-      </Link>
       <div className={`detalle-card ${alojamiento.localidad === "Murcia" ? "murcia" : "zaragoza"}`}>
         <h1>{alojamiento.nombre}</h1>
         <div className="detalle-info">
@@ -95,6 +92,9 @@ function DetalleAlojamiento() {
             Ver más información
           </a>
         )}
+        <Link to="/alojamientos" className="volver-btn">
+          ← Volver
+        </Link>
       </div>
     </div>
   );
