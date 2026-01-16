@@ -9,16 +9,8 @@ function RestauranteCard({ restaurante }) {
   return (
     <div className="card">
       <h3>{nombre ? nombre : "Sin nombre"}</h3>
-      <p>{tipococina ? tipococina : "Tipo de cocina no especificado"}</p>
-      {direccion && <p>{direccion}</p>}
-
-      {lat && lng ? (
-        <p>
-          {Number(lat).toFixed(4)}, {Number(lng).toFixed(4)}
-        </p>
-      ) : (
-        <p>Ubicación no disponible</p>
-      )}
+      <p className="subtitulo">{tipococina ? tipococina : "Desconocido"}</p>
+      {true && <button className="localidad-btn">Zaragoza</button>}
     </div>
   );
 }

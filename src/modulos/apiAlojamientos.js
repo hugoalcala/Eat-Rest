@@ -8,7 +8,7 @@ export async function getAlojamientosZaragoza() {
   const data = await res.json();
   const items = data.result || data || [];
   return items.map((item, idx) => ({
-    id: item.id || idx,
+    id: `zaragoza-${item.id || idx}`,
     nombre: item.title || item.Nombre || "Sin nombre",
     descripcion: item.description || "Sin descripción",
     direccion: item.streetAddress || item.Direccion || "Dirección no disponible",
@@ -26,7 +26,7 @@ export async function getAlojamientosMurcia() {
   const res = await fetch(url);
   const data = await res.json();
   return data.map((item, idx) => ({
-    id: item.Id || idx,
+    id: `murcia-${item.Id || idx}`,
     nombre: item.Nombre || "Sin nombre",
     descripcion: item.Descripcion || "Sin descripción",
     direccion: item.Direccion || "Dirección no disponible",

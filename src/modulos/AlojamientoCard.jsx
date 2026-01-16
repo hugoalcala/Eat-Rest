@@ -18,12 +18,8 @@ function AlojamientoCard({ alojamiento }) {
   return (
     <div className={`card ${localidad === "Murcia" ? "murcia" : "zaragoza"}`}>
       <h3>{nombre || "Alojamiento sin nombre"}</h3>
-      <p>{categoria ? categoria : "Categoría no especificada"}</p>
-      {direccion && <p>{direccion}</p>}
-      {localidad && <p>{localidad}</p>}
-      {descripcion && (
-        <p className="descripcion" style={{wordBreak: 'break-word'}} dangerouslySetInnerHTML={{ __html: descripcion }} />
-      )}
+      <p className="subtitulo">{categoria ? categoria : "No especificada"}</p>
+      {localidad && <button className="localidad-btn">{localidad}</button>}
     </div>
   );
 }
