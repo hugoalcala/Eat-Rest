@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./apiRestaurantes";
 import RestauranteCard from "./RestauranteCard";
+import MapaComponent from "./MapaComponent.jsx";
 import "./Restaurante.css";
 
 
@@ -119,6 +120,7 @@ function Restaurantes() {
         <p style={{ color: "#e53e3e" }}>{error}</p>
       ) : (
         <>
+          <MapaComponent ubicaciones={restaurantesFiltrados} />
           <div className="restaurantes-grid">
             {paginaRestaurantes.length === 0 ? (
               <p>No se encontraron restaurantes.</p>

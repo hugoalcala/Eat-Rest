@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAlojamientosZaragoza, getAlojamientosMurcia } from "./apiAlojamientos.js";
 import AlojamientoCard from "./AlojamientoCard";
+import MapaComponent from "./MapaComponent.jsx";
 import "./Alojamiento.css";
 
 
@@ -87,6 +88,7 @@ function Alojamientos() {
         <p style={{ color: "#e53e3e" }}>{error}</p>
       ) : (
         <>
+          <MapaComponent ubicaciones={alojamientosFiltrados} />
           <div className="alojamientos-grid">
             {paginaAlojamientos.length === 0 ? (
               <p>No se encontraron alojamientos.</p>

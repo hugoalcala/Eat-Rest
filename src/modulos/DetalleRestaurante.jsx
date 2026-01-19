@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./apiRestaurantes";
+import MapaComponent from "./MapaComponent.jsx";
 import "./DetalleRestaurante.css";
 
 function DetalleRestaurante() {
@@ -93,6 +94,9 @@ function DetalleRestaurante() {
             </div>
           )}
         </div>
+        {restaurante.lat && restaurante.lng && (
+          <MapaComponent ubicaciones={[restaurante]} />
+        )}
       </div>
       <Link to="/restaurantes" className="volver-btn">
         ← Volver

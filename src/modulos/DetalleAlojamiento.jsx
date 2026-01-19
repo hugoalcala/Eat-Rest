@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getAlojamientosZaragoza, getAlojamientosMurcia } from "./apiAlojamientos.js";
+import MapaComponent from "./MapaComponent.jsx";
 import "./DetalleAlojamiento.css";
 
 function DetalleAlojamiento() {
@@ -117,6 +118,9 @@ function DetalleAlojamiento() {
             </div>
           )}
         </div>
+        {alojamiento.lat && alojamiento.lng && (
+          <MapaComponent ubicaciones={[alojamiento]} />
+        )}
         {alojamiento.link && (
           <a href={alojamiento.link} target="_blank" rel="noopener noreferrer" className="enlace-btn">
             Ver más información
