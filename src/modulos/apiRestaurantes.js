@@ -26,7 +26,7 @@ export async function getRestaurantesMurcia() {
     id: resto.Id ?? i,
     nombre: resto.Nombre || resto.denominacion || "Sin nombre",
     tipococina: resto.TipoCocina || resto.tipo || "Desconocido",
-    lat: resto.Latitud,
-    lng: resto.Longitud,
+    lat: resto.Longitud,  // Invertidos
+    lng: resto.Latitud,   // Invertidos
   }));
 }
