@@ -55,8 +55,8 @@ export async function getAlojamientosMurcia() {
     direccion: item.Direccion || "Dirección no disponible",
     localidad: "Murcia",
     categoria: item.TipoAlojamiento || item.Categoria || "No especificada",
-    lat: item.Latitud || null,
-    lng: item.Longitud || null,
+    lat: item.Longitud || null,  // Invertidos
+    lng: item.Latitud || null,   // Invertidos
     telefono: item.Telefono || null,
     email: item.Email || null,
     web: item.Web || null,
