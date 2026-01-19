@@ -7,22 +7,40 @@ export async function getAlojamientosZaragoza() {
   const res = await fetch(url);
   const data = await res.json();
   const items = data.result || data || [];
-  return items.map((item, idx) => ({
-    id: `zaragoza-${item.id || idx}`,
-    nombre: item.title || item.Nombre || "Sin nombre",
-    descripcion: item.description || "Sin descripción",
-    direccion: item.streetAddress || item.Direccion || "Dirección no disponible",
-    localidad: item.addressLocality || "Zaragoza",
-    categoria: (item.categoria || item.TipoAlojamiento || "No especificada").replace(/^categoria/i, "").trim(),
-    lat: item.latitud || item.Latitud || null,
-    lng: item.longitud || item.Longitud || null,
-    link: item.uri || item.link || null,
-    telefono: item.telephone || item.Telefono || null,
-    email: item.email || item.Email || null,
-    web: item.url || item.Web || null,
-    horario: item.horario || item.Horario || null,
-    numEstrellas: item.numEstrellas || item.NumEstrellas || null,
-  }));
+  return items.map((item, idx) => {
+    // Intentar extraer coordenadas de múltiples campos
+    let lat = item.latitud || item.Latitud || null;
+    let lng = item.longitud || item.Longitud || null;
+    
+    // Si están en un objeto geometry
+    if (item.geometry && item.geometry.coordinates) {
+      lng = item.geometry.coordinates[0];
+      lat = item.geometry.coordinates[1];
+    }
+    
+    // Si están en location
+    if (item.location) {
+      lat = item.location.latitude || item.location.lat || lat;
+      lng = item.location.longitude || item.location.lng || lng;
+    }
+
+    return {
+      id: `zaragoza-${item.id || idx}`,
+      nombre: item.title || item.Nombre || "Sin nombre",
+      descripcion: item.description || "Sin descripción",
+      direccion: item.streetAddress || item.Direccion || "Dirección no disponible",
+      localidad: item.addressLocality || "Zaragoza",
+      categoria: (item.categoria || item.TipoAlojamiento || "No especificada").replace(/^categoria/i, "").trim(),
+      lat: lat,
+      lng: lng,
+      link: item.uri || item.link || null,
+      telefono: item.telephone || item.Telefono || null,
+      email: item.email || item.Email || null,
+      web: item.url || item.Web || null,
+      horario: item.horario || item.Horario || null,
+      numEstrellas: item.numEstrellas || item.NumEstrellas || null,
+    };
+  });
 }
 
 // Murcia hoteles

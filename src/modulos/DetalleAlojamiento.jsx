@@ -118,9 +118,7 @@ function DetalleAlojamiento() {
             </div>
           )}
         </div>
-        {alojamiento.lat && alojamiento.lng && (
-          <MapaComponent ubicaciones={[alojamiento]} />
-        )}
+        <MapaComponent ubicaciones={[alojamiento]} />
         {alojamiento.link && (
           <a href={alojamiento.link} target="_blank" rel="noopener noreferrer" className="enlace-btn">
             Ver más información
