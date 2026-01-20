@@ -109,14 +109,6 @@ function DetalleAlojamiento() {
               <p dangerouslySetInnerHTML={{ __html: alojamiento.horario }} />
             </div>
           )}
-          {alojamiento.lat && alojamiento.lng && (
-            <div className="info-grupo">
-              <label>Coordenadas:</label>
-              <p>
-                {Number(alojamiento.lat).toFixed(4)}, {Number(alojamiento.lng).toFixed(4)}
-              </p>
-            </div>
-          )}
         </div>
         {alojamiento.lat && alojamiento.lng && (
           <MapaComponent ubicaciones={[alojamiento]} />

@@ -85,14 +85,6 @@ function DetalleRestaurante() {
               <p>{restaurante.direccion}</p>
             </div>
           )}
-          {restaurante.lat && restaurante.lng && (
-            <div className="info-grupo">
-              <label>Coordenadas:</label>
-              <p>
-                {Number(restaurante.lat).toFixed(4)}, {Number(restaurante.lng).toFixed(4)}
-              </p>
-            </div>
-          )}
         </div>
         {restaurante.lat && restaurante.lng && (
           <MapaComponent ubicaciones={[restaurante]} />
