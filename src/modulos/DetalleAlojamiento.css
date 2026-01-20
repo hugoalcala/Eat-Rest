@@ -98,6 +98,31 @@
   background-color: #ff6b47;
 }
 
+.btn-reservar {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-reservar:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-reservar:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .detalle-container {
     padding: 20px 10px;

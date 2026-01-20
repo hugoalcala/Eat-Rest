@@ -4,10 +4,12 @@ import { getAlojamientosZaragoza, getAlojamientosMurcia } from "./apiAlojamiento
 import { getTiempoPorCiudad } from "./apiTiempo.js";
 import MapaComponent from "./MapaComponent.jsx";
 import PronosticoComponent from "./PronosticoComponent.jsx";
+import ReservaForm from "./ReservaForm.jsx";
 import "./DetalleAlojamiento.css";
 
 function DetalleAlojamiento() {
   const { id } = useParams();
+  const [abrirReserva, setAbrirReserva] = useState(false);
   const [alojamiento, setAlojamiento] = useState(null);
   const [tiempo, setTiempo] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -117,6 +119,9 @@ function DetalleAlojamiento() {
           )}
         </div>
         {tiempo && <PronosticoComponent pronostico={tiempo.pronostico} />}
+        <button className="btn-reservar" onClick={() => setAbrirReserva(true)}>
+          Reservar ahora
+        </button>
         <MapaComponent ubicaciones={[alojamiento]} />
         {alojamiento.link && (
           <a href={alojamiento.link} target="_blank" rel="noopener noreferrer" className="enlace-btn">
@@ -127,6 +132,9 @@ function DetalleAlojamiento() {
       <Link to="/alojamientos" className="volver-btn">
         ← Volver
       </Link>
+      {abrirReserva && (
+        <ReservaForm alojamiento={alojamiento} onClose={() => setAbrirReserva(false)} />
+      )}
     </div>
   );
 }
