@@ -1,0 +1,76 @@
+.pronostico-container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.pronostico-container h3 {
+  margin: 0 0 15px 0;
+  color: #ff6b35;
+  font-size: 18px;
+}
+
+.pronostico-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.dia-pronostico {
+  background-color: white;
+  border: 2px solid #ffa500;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.dia-pronostico.murcia {
+  border-color: #9c27b0;
+}
+
+.dia-pronostico .fecha {
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-size: 12px;
+}
+
+.dia-pronostico .descripcion {
+  color: #666;
+  font-size: 12px;
+  margin: 0 0 8px 0;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.temperaturas {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.temp-max {
+  background-color: #ffe6cc;
+  color: #ff6b35;
+  padding: 4px 8px;
+  border-radius: 4px;
+  flex: 1;
+  font-weight: bold;
+}
+
+.dia-pronostico.murcia .temp-max {
+  background-color: #f3e5f5;
+  color: #9c27b0;
+}
+
+.temp-min {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 4px;
+  flex: 1;
+  font-weight: bold;
+}

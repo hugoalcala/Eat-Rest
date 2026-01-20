@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getAlojamientosZaragoza, getAlojamientosMurcia } from "./apiAlojamientos.js";
+import { getTiempoPorCiudad } from "./apiTiempo.js";
 import MapaComponent from "./MapaComponent.jsx";
+import PronosticoComponent from "./PronosticoComponent.jsx";
 import "./DetalleAlojamiento.css";
 
 function DetalleAlojamiento() {
   const { id } = useParams();
   const [alojamiento, setAlojamiento] = useState(null);
+  const [tiempo, setTiempo] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,6 +27,9 @@ function DetalleAlojamiento() {
 
         if (encontrado) {
           setAlojamiento(encontrado);
+          // Cargar tiempo para la ciudad
+          const tiempoData = await getTiempoPorCiudad(encontrado.localidad);
+          setTiempo(tiempoData);
         } else {
           setError("Alojamiento no encontrado");
         }
@@ -110,6 +116,7 @@ function DetalleAlojamiento() {
             </div>
           )}
         </div>
+        {tiempo && <PronosticoComponent pronostico={tiempo.pronostico} />}
         <MapaComponent ubicaciones={[alojamiento]} />
         {alojamiento.link && (
           <a href={alojamiento.link} target="_blank" rel="noopener noreferrer" className="enlace-btn">
