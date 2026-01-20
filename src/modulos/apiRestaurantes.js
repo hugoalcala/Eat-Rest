@@ -22,11 +22,13 @@ export async function getRestaurantesZaragoza() {
 export async function getRestaurantesMurcia() {
   const res = await fetch("https://nexo.carm.es/nexo/archivos/recursos/opendata/json/Restaurantes.json");
   const data = await res.json();
-  return data.map((resto, i) => ({
-    id: resto.Id ?? i,
-    nombre: resto.Nombre || resto.denominacion || "Sin nombre",
-    tipococina: resto.TipoCocina || resto.tipo || "Desconocido",
-    lat: resto.Longitud,  // Invertidos
-    lng: resto.Latitud,   // Invertidos
-  }));
+  return data
+    .map((resto, i) => ({
+      id: resto.Id ?? i,
+      nombre: resto.Nombre || resto.denominacion || "Sin nombre",
+      tipococina: resto.TipoCocina || resto.tipo || "Desconocido",
+      lat: resto.Longitud,
+      lng: resto.Latitud,
+    }))
+    .filter(resto => resto.lat && resto.lng); // Solo mostrar los que tienen coordenadas
 }

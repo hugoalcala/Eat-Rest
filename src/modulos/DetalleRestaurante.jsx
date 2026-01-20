@@ -94,7 +94,9 @@ function DetalleRestaurante() {
             </div>
           )}
         </div>
-        <MapaComponent ubicaciones={[restaurante]} />
+        {restaurante.lat && restaurante.lng && (
+          <MapaComponent ubicaciones={[restaurante]} />
+        )}
       </div>
       <Link to="/restaurantes" className="volver-btn">
         ← Volver

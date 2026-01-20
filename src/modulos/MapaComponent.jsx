@@ -115,40 +115,39 @@ export default function MapaComponent({ ubicaciones, centroDefault = [40.4168, -
         ]
       : centroDefault;
 
+  // Si no hay ubicaciones válidas, no renderizar nada
+  if (ubicacionesValidas.length === 0) {
+    return null;
+  }
+
   return (
     <div className="mapa-contenedor">
-      {ubicacionesValidas.length === 0 ? (
-        <p className="sin-coordenadas">
-          No se encuentran coordenadas válidas disponibles para mostrar en el mapa
-        </p>
-      ) : (
-        <MapContainer
-          center={centro}
-          zoom={13}
-          scrollWheelZoom={false}
-          className="mapa"
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {ubicacionesValidas.map((ubicacion, idx) => (
-            <Marker
-              key={idx}
-              position={[parseFloat(ubicacion.lat), parseFloat(ubicacion.lng)]}
-              icon={icono}
-            >
-              <Popup>
-                <div className="popup-contenido">
-                  <h4>{ubicacion.nombre}</h4>
-                  {ubicacion.direccion && <p>{ubicacion.direccion}</p>}
-                  {ubicacion.tipococina && <p>Tipo: {ubicacion.tipococina}</p>}
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      )}
+      <MapContainer
+        center={centro}
+        zoom={13}
+        scrollWheelZoom={false}
+        className="mapa"
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {ubicacionesValidas.map((ubicacion, idx) => (
+          <Marker
+            key={idx}
+            position={[parseFloat(ubicacion.lat), parseFloat(ubicacion.lng)]}
+            icon={icono}
+          >
+            <Popup>
+              <div className="popup-contenido">
+                <h4>{ubicacion.nombre}</h4>
+                {ubicacion.direccion && <p>{ubicacion.direccion}</p>}
+                {ubicacion.tipococina && <p>Tipo: {ubicacion.tipococina}</p>}
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
     </div>
   );
 }
