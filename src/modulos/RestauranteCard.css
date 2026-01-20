@@ -70,6 +70,37 @@
   margin: 5px 0 0 0;
 }
 
+.pronostico-mini {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  justify-content: center;
+}
+
+.dia-mini {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.fecha-mini {
+  color: #666;
+  margin: 0 0 4px 0;
+  font-size: 11px;
+}
+
+.temp-mini {
+  color: #ff6b35;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card.murcia .temp-mini {
+  color: #9c27b0;
+}
+
 .localidad-btn {
   background-color: #ffa500;
   color: white;

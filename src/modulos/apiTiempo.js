@@ -18,17 +18,26 @@ export async function getTiempoPorCiudad(ciudad) {
     const coord = coordenadas[ciudad];
     if (!coord) return null;
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${coord.lat}&longitude=${coord.lng}&current=temperature_2m,weather_code,relative_humidity_2m&temperature_unit=celsius`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${coord.lat}&longitude=${coord.lng}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=celsius&timezone=auto`;
     
     const res = await fetch(url);
     const data = await res.json();
     
-    if (data.current) {
+    if (data.current && data.daily) {
+      // Pronóstico para los próximos 7 días
+      const pronostico = data.daily.time.slice(0, 7).map((fecha, idx) => ({
+        fecha: new Date(fecha).toLocaleDateString('es-ES', { weekday: 'short', month: 'short', day: 'numeric' }),
+        tempMax: Math.round(data.daily.temperature_2m_max[idx]),
+        tempMin: Math.round(data.daily.temperature_2m_min[idx]),
+        codigo: data.daily.weather_code[idx],
+        descripcion: getDescripcionClima(data.daily.weather_code[idx])
+      }));
+
       const resultado = {
         temperatura: Math.round(data.current.temperature_2m),
-        humedad: data.current.relative_humidity_2m,
         codigo: data.current.weather_code,
-        descripcion: getDescripcionClima(data.current.weather_code)
+        descripcion: getDescripcionClima(data.current.weather_code),
+        pronostico: pronostico
       };
       
       // Guardar en caché

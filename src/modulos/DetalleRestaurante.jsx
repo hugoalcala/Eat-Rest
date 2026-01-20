@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getRestaurantesZaragoza, getRestaurantesMurcia } from "./apiRestaurantes";
+import { getTiempoPorCiudad } from "./apiTiempo.js";
 import MapaComponent from "./MapaComponent.jsx";
+import PronosticoComponent from "./PronosticoComponent.jsx";
 import "./DetalleRestaurante.css";
 
 function DetalleRestaurante() {
   const { id } = useParams();
   const [restaurante, setRestaurante] = useState(null);
+  const [tiempo, setTiempo] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
@@ -36,6 +39,9 @@ function DetalleRestaurante() {
 
         if (encontrado) {
           setRestaurante(encontrado);
+          // Cargar tiempo para la ciudad
+          const tiempoData = await getTiempoPorCiudad(encontrado.ciudad);
+          setTiempo(tiempoData);
         } else {
           setError("Restaurante no encontrado");
         }
@@ -86,6 +92,7 @@ function DetalleRestaurante() {
             </div>
           )}
         </div>
+        {tiempo && <PronosticoComponent pronostico={tiempo.pronostico} />}
         <MapaComponent ubicaciones={[restaurante]} />
       </div>
       <Link to="/restaurantes" className="volver-btn">
