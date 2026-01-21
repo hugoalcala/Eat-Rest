@@ -49,6 +49,13 @@ function ReservaForm({ alojamiento, onClose }) {
     }
     const entrada = new Date(formData.fechaEntrada);
     const salida = new Date(formData.fechaSalida);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    if (entrada < hoy) {
+      setError("La fecha de entrada no puede ser en el pasado");
+      return false;
+    }
     if (salida <= entrada) {
       setError("La fecha de salida debe ser después de la entrada");
       return false;
@@ -69,6 +76,25 @@ function ReservaForm({ alojamiento, onClose }) {
       setError("Completa la fecha de vencimiento");
       return false;
     }
+    
+    // Validar que la tarjeta no esté caducada
+    const mesNum = parseInt(formData.mes, 10);
+    const añoNum = parseInt(formData.año, 10);
+    
+    if (isNaN(mesNum) || mesNum < 1 || mesNum > 12) {
+      setError("Mes de vencimiento inválido (01-12)");
+      return false;
+    }
+    
+    const hoy = new Date();
+    const mesActual = hoy.getMonth() + 1;
+    const añoActual = hoy.getFullYear() % 100; // Últimos 2 dígitos del año
+    
+    if (añoNum < añoActual || (añoNum === añoActual && mesNum < mesActual)) {
+      setError("La tarjeta está caducada");
+      return false;
+    }
+    
     if (!formData.cvv || formData.cvv.length < 3) {
       setError("CVV inválido");
       return false;
@@ -198,7 +224,9 @@ function ReservaForm({ alojamiento, onClose }) {
                 name="tarjeta"
                 value={formData.tarjeta}
                 onChange={(e) => {
-                  const value = e.target.value.replace(/\s/g, "");
+                  let value = e.target.value.replace(/\s/g, "");
+                  // Agregar espacios cada 4 dígitos
+                  value = value.replace(/(\d{4})(?=\d)/g, "$1 ");
                   setFormData({ ...formData, tarjeta: value });
                 }}
                 placeholder="4242 4242 4242 4242"
