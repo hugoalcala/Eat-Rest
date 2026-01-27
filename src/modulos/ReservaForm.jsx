@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PagoStripe from "./PagoStripe";
 import "./ReservaForm.css";
 
 function ReservaForm({ alojamiento, onClose }) {
@@ -9,17 +10,12 @@ function ReservaForm({ alojamiento, onClose }) {
     fechaEntrada: "",
     fechaSalida: "",
     personas: 1,
-    tarjeta: "",
-    mes: "",
-    año: "",
-    cvv: ""
   });
 
-  const [paso, setPaso] = useState(1); // Paso 1: datos, Paso 2: pago
+  const [paso, setPaso] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Precio por noche (en euros)
   const precioPorNoche = 85;
 
   const calcularTotal = () => {
@@ -67,59 +63,22 @@ function ReservaForm({ alojamiento, onClose }) {
     return true;
   };
 
-  const validarPaso2 = () => {
-    if (!formData.tarjeta || formData.tarjeta.length < 13) {
-      setError("Número de tarjeta inválido");
-      return false;
-    }
-    if (!formData.mes || !formData.año) {
-      setError("Completa la fecha de vencimiento");
-      return false;
-    }
-    
-    // Validar que la tarjeta no esté caducada
-    const mesNum = parseInt(formData.mes, 10);
-    const añoNum = parseInt(formData.año, 10);
-    
-    if (isNaN(mesNum) || mesNum < 1 || mesNum > 12) {
-      setError("Mes de vencimiento inválido (01-12)");
-      return false;
-    }
-    
-    const hoy = new Date();
-    const mesActual = hoy.getMonth() + 1;
-    const añoActual = hoy.getFullYear() % 100; // Últimos 2 dígitos del año
-    
-    if (añoNum < añoActual || (añoNum === añoActual && mesNum < mesActual)) {
-      setError("La tarjeta está caducada");
-      return false;
-    }
-    
-    if (!formData.cvv || formData.cvv.length < 3) {
-      setError("CVV inválido");
-      return false;
-    }
-    return true;
-  };
-
   const handleSiguiente = () => {
     if (validarPaso1()) {
       setPaso(2);
     }
   };
 
-  const handleReservar = async () => {
-    if (!validarPaso2()) return;
+  const handlePagoExito = (paymentIntent) => {
+    setLoading(false);
+    alert(
+      `✓ ¡Reserva confirmada!\n\nAlojamiento: ${alojamiento.nombre}\nFechas: ${formData.fechaEntrada} a ${formData.fechaSalida}\nHuéspedes: ${formData.personas}\nNoches: ${calcularTotal() / precioPorNoche}\nTotal: €${calcularTotal()}\n\nA nombre de: ${formData.nombre}\n\nID Transacción: ${paymentIntent.id}\n\n(Simulado - Sin cargo real)`
+    );
+    onClose();
+  };
 
-    setLoading(true);
-    // Simular procesamiento
-    setTimeout(() => {
-      setLoading(false);
-      alert(
-        `¡Reserva confirmada!\n\nAlojamiento: ${alojamiento.nombre}\nHuéspedes: ${formData.personas}\nNoche: €${precioPorNoche}\nNúmero de noches: ${calcularTotal() / precioPorNoche}\nTotal: €${calcularTotal()}\n\nReserva a nombre de: ${formData.nombre}`
-      );
-      onClose();
-    }, 2000);
+  const handleErrorPago = (mensajeError) => {
+    setError(mensajeError);
   };
 
   return (
@@ -215,62 +174,8 @@ function ReservaForm({ alojamiento, onClose }) {
           </div>
         ) : (
           <div className="paso2">
-            <h3>Datos de pago</h3>
-
-            <div className="form-grupo">
-              <label>Número de tarjeta</label>
-              <input
-                type="text"
-                name="tarjeta"
-                value={formData.tarjeta}
-                onChange={(e) => {
-                  let value = e.target.value.replace(/\s/g, "");
-                  // Agregar espacios cada 4 dígitos
-                  value = value.replace(/(\d{4})(?=\d)/g, "$1 ");
-                  setFormData({ ...formData, tarjeta: value });
-                }}
-                placeholder="4242 4242 4242 4242"
-                maxLength="19"
-              />
-              <small>Usa: 4242 4242 4242 4242 (tarjeta de prueba)</small>
-            </div>
-
-            <div className="form-row">
-              <div className="form-grupo">
-                <label>Mes/Año</label>
-                <div className="fecha-vencimiento">
-                  <input
-                    type="text"
-                    name="mes"
-                    value={formData.mes}
-                    onChange={handleChange}
-                    placeholder="MM"
-                    maxLength="2"
-                  />
-                  <span>/</span>
-                  <input
-                    type="text"
-                    name="año"
-                    value={formData.año}
-                    onChange={handleChange}
-                    placeholder="YY"
-                    maxLength="2"
-                  />
-                </div>
-              </div>
-
-              <div className="form-grupo">
-                <label>CVV</label>
-                <input
-                  type="text"
-                  name="cvv"
-                  value={formData.cvv}
-                  onChange={handleChange}
-                  placeholder="123"
-                  maxLength="3"
-                />
-              </div>
-            </div>
+            <h3>Pago seguro con Stripe</h3>
+            <p className="stripe-info">Formulario de pago de Stripe integrado</p>
 
             <div className="resumen-final">
               <div className="detalle">
@@ -283,18 +188,20 @@ function ReservaForm({ alojamiento, onClose }) {
               </div>
             </div>
 
+            <PagoStripe
+              total={calcularTotal()}
+              nombre={formData.nombre}
+              email={formData.email}
+              onPago={handlePagoExito}
+              onError={handleErrorPago}
+              loading={loading}
+            />
+
             {error && <p className="error">{error}</p>}
 
             <div className="botones-pago">
-              <button className="btn-atras" onClick={() => setPaso(1)}>
+              <button className="btn-atras" onClick={() => setPaso(1)} disabled={loading}>
                 Atrás
-              </button>
-              <button 
-                className="btn-reservar" 
-                onClick={handleReservar}
-                disabled={loading}
-              >
-                {loading ? "Procesando..." : "Confirmar reserva"}
               </button>
             </div>
           </div>
